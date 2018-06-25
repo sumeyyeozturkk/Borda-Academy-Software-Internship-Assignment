@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Borda Academy Web Test</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+  <style>
+    .bg-accent {
+      background-color: #ff5a00
+    }    
+    /*.hidden {
+      visibility: hidden;
+    }*/
+    .hidden{
+      display: none;
+    }
+    .marked {
+      background-color: #F8CE28;
+    }
+    .footer {
+      color: #cccccc;
+      border-top: 1px solid #cccccc;
+    }
+  </style>
+</head>
+<body class="bg-gray">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-accent justify-content-between">
+    <a class="navbar-brand" href="#">Borda Academy Web Test</a>      
+    <form class="form-inline" onsubmit="search(); return false;">
+      <input id="searchText" class="form-control mr-sm-2" type="search" placeholder="Keyword" aria-label="Keyword">
+      <button class="btn my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  <div class="container mt-3">  
+    <div class="mb-3">
+      <a href="#" onclick="toggleImages();">Toggle Images</a>
+      <a href="" class="btn btn-danger" onclick="unmark()">Unmark</a>
+    </div>
+    <p class="searchable">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices, nulla ac suscipit posuere, augue purus egestas nulla, vel viverra nisl turpis id sem. Donec nisl quam, fermentum at nisi vitae, rutrum ornare ipsum. Duis id massa enim. Sed vitae risus mollis, semper urna et, sodales diam. Vivamus auctor rutrum velit, ac iaculis eros lobortis sed. Ut ac nisi id felis sagittis fermentum. Nullam fermentum pellentesque mattis. Pellentesque elementum tortor mauris, sit amet aliquam ante eleifend eu. Vivamus sagittis imperdiet velit, in sagittis nisl scelerisque id. Vivamus et nibh pellentesque, consectetur risus eget, faucibus augue. Nam ut purus ligula. Quisque facilisis lacinia odio, sed ultricies sem. Nulla nec venenatis felis. Suspendisse potenti. Suspendisse potenti. Aliquam erat volutpat.
+    </p>
+    <img class="rounded" src="data:image/jpeg;base64,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" />
+    <p class="searchable">
+      Aliquam lacinia enim mauris, a aliquam nisi laoreet quis. Praesent dictum, metus sed suscipit faucibus, magna dolor consequat est, id tristique urna elit non sapien. Aenean in dui eget urna auctor vehicula nec quis purus. Donec id eros nec leo facilisis varius non ut neque. Morbi convallis lectus nunc, quis congue nisl dignissim ac. Donec justo nulla, varius ut nisi in, egestas tristique ex. Vivamus sit amet risus sed est euismod consectetur. Pellentesque vel urna ut turpis aliquet tempus eu vitae risus. Aliquam erat volutpat. Morbi dictum dolor sed orci bibendum, in tincidunt magna egestas. Sed aliquam hendrerit justo ac mattis. Morbi at venenatis orci, non facilisis ligula. Donec dolor velit, commodo eu arcu tincidunt, feugiat bibendum dui. Proin commodo, felis ac venenatis faucibus, est libero sollicitudin magna, eget faucibus ligula elit nec felis. Curabitur tincidunt rhoncus justo at vestibulum. Sed finibus nibh mi, in pretium odio ornare in.
+    </p>
+    <p class="searchable">
+      Pellentesque in arcu at libero vehicula volutpat. Vivamus non sem sollicitudin, lacinia sem id, congue est. Integer ullamcorper vehicula tellus. Duis aliquam velit ac orci dignissim, eu pharetra tellus fringilla. Donec consectetur lacinia felis non mollis. Phasellus venenatis et neque a venenatis. Vestibulum risus dui, pretium id metus in, hendrerit fringilla nibh. Sed ut elementum risus, a ultrices enim. Donec luctus volutpat enim, quis viverra dui varius eget.
+    </p>
+    <div class="footer">
+      <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod commodo sem. Fusce congue aliquam nunc eget imperdiet. Etiam sollicitudin eu mi vel maximus. Ut a euismod ligula. Proin id nisl id neque sagittis sagittis eu in nisl. Morbi ac erat eu sem efficitur auctor at vel nibh. Nam neque purus, ultricies nec tristique sagittis, finibus id sem. Phasellus eu sapien ut mauris vehicula scelerisque sed non nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+      </p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var imagesHidden = false;
+    function toggleImages() {
+      if (imagesHidden) {
+        $("img").removeClass("hidden");
+        imagesHidden = false;
+      } else {
+        $("img").addClass("hidden");
+        imagesHidden = true;
+      }
+    }
+    /*function search() {
+      var searchText = $("#searchText").val();
+      
+      if (searchText == null) {
+        alert("Please enter search text");
+      } else {
+        $("p").mark(searchText, {className: "marked"});
+      }
+    }*/
+    function search() {
+      var searchText = $("#searchText").val();
+      console.log($("#searchText").val());
+      if (searchText == "") {
+        alert("Please enter search text");
+      } else {
+        $(".searchable").unmark(); // aramadan önce tüm seçilileri silmeye yarayan komut
+        $(".searchable").mark(searchText, {className: "marked"});
+      }
+    }
+    function unmark(){
+      $(".searchable").unmark(); // aramadan önce tüm seçilileri silmeye yarayan komut
+    }
+  </script>
+</body>
+</html>
