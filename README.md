@@ -1,1 +1,1 @@
-# Borda-Academy-Software-Internship-Assignment
+# Borda Academy Software Internship Assignment
